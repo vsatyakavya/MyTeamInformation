@@ -50,8 +50,7 @@ inquirer
             ]).then(function(role){
                 console.log(role.officeNumber);
                 const manager = new Manager(data.name,data.id,data.email,role.officeNumber)
-                var a= manager.getOfficeNumber();
-                console.log("it is return value"+a);
+                
                 console.log(manager);
                 // render(manager);
             })
@@ -67,8 +66,7 @@ inquirer
             ]).then(function(role){
                 console.log(role.github)
                 const engineer = new Engineer(data.name,data.id,data.email,role.github)
-                var a = engineer.getGithub();
-                console.log("it is return value"+a);
+                
                 console.log(engineer);
 
             })
@@ -84,8 +82,7 @@ inquirer
             ]).then(function(role){
                 console.log(role.school);
                 const intern = new Intern(data.name,data.id,data.email,role.school)
-                var a = intern.getSchool();
-                console.log("it is return value"+a);
+                
                 console.log(intern);
                 
 
