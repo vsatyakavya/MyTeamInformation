@@ -1,48 +1,112 @@
 var inquirer = require("inquirer");
 var fs = require('fs');
-const generateHtml = require("./generateHTML");
+const Employee = require("./Employee");
+const Engineer = require("./Engineer");
+const Intern = require("./intern");
+const Manager = require("./Manager");
+// const render = require("./htmlRenderer");
+
+
+
+
+const role = ["Manager", "Engineer", "Intern"];
 inquirer
-.prompt([
-    {
-        type:"input",
-        message:"what is you name",
-        name: "name"
-    },
-    {
-        type:"input",
-        message:"what is you location",
-        name: "location"
-    },
-    {
-        type:"input",
-        message:"tell us your bio",
-        name: "bio"
-    },
-    {
-        type:"input",
-        message:"your linked account url",
-        name: "linkedin"
-    },
-    {
-        type:"input",
-        message:"your github url",
-        name: "github"
-    },
-   ]).then (function(data){
-       var result = (generateHtml(data));
-       writeToFile("intro.html",result);
-       console.log("success!!!");
-       
-       
-   })
-   function writeToFile(fileName,data){
-fs.writeFile(fileName,data,function(err){
-    if(err){
-        console.log(err)
-    }
-    else{
-        console.log("successfully added")
-    }
-})
-   }
-   
+    .prompt([
+        {
+            type: "input",
+            message: "what is you name",
+            name: "name"
+        },
+        {
+            type: "list",
+            message: "what is your role",
+            name: "role",
+            choices: role
+
+        },
+        {
+            type: "input",
+            message: "what is your id",
+            name: "id"
+        },
+        {
+            type: "input",
+            message: "what is your email id",
+            name: "email"
+        },
+
+    ]).then(function (data) {
+        // var result = (generateHtml(data));
+        // writeToFile("intro.html", result);
+        // console.log("success!!!");
+        // console.log(data.role);
+        if (data.role === "Manager") {
+            inquirer.prompt([
+                {
+                    type: "input",
+                    message: "what is your Office Number",
+                    name: "officeNumber"
+                }
+            ]).then(function(role){
+                console.log(role.officeNumber);
+                const manager = new Manager(data.name,data.id,data.email,role.officeNumber)
+                var a= manager.getOfficeNumber();
+                console.log("it is return value"+a);
+                console.log(manager);
+                // render(manager);
+            })
+            
+        }
+        else if (data.role === "Engineer") {
+            inquirer.prompt([
+                {
+                    type: "input",
+                    message: "what is your Github Account",
+                    name: "github"
+                }
+            ]).then(function(role){
+                console.log(role.github)
+                const engineer = new Engineer(data.name,data.id,data.email,role.github)
+                var a = engineer.getGithub();
+                console.log("it is return value"+a);
+                console.log(engineer);
+
+            })
+
+        }
+        else if (data.role === "Intern") {
+            inquirer.prompt([
+                {
+                    type: "input",
+                    message: "what is your school Name",
+                    name: "school"
+                }
+            ]).then(function(role){
+                console.log(role.school);
+                const intern = new Intern(data.name,data.id,data.email,role.school)
+                var a = intern.getSchool();
+                console.log("it is return value"+a);
+                console.log(intern);
+                
+
+            })
+        }
+         
+
+    })
+
+    
+
+    
+    
+    
+// function writeToFile(fileName, data) {
+//     fs.writeFile(fileName, data, function (err) {
+//         if (err) {
+//             console.log(err)
+//         }
+//         else {
+//             console.log("successfully added")
+//         }
+//     })
+// }
