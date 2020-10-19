@@ -30,6 +30,7 @@ const renderManager = manager => {
   template = replacePlaceholders(template, "email", manager.getEmail());
   template = replacePlaceholders(template, "id", manager.getId());
   template = replacePlaceholders(template, "officeNumber", manager.getOfficeNumber());
+  console.log("successs");
   return template;
 };
 
@@ -45,8 +46,8 @@ const renderEngineer = engineer => {
 
 const renderIntern = intern => {
   let template = fs.readFileSync(path.resolve(templatesDir, "intern.html"), "utf8");
-  template = replacePlaceholders(template, "name", intern.getName());
-  template = replacePlaceholders(template, "role", intern.getRole());
+  template = replacePlaceholders(template, "name", "hari");
+  template = replacePlaceholders(template, "role", "jk");
   template = replacePlaceholders(template, "email", intern.getEmail());
   template = replacePlaceholders(template, "id", intern.getId());
   template = replacePlaceholders(template, "school", intern.getSchool());
@@ -63,4 +64,8 @@ const replacePlaceholders = (template, placeholder, value) => {
   return template.replace(pattern, value);
 };
 
-module.exports = render;
+module.exports = {
+  render,
+  renderManager
+  
+}

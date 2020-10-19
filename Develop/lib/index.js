@@ -4,7 +4,7 @@ const Employee = require("./Employee");
 const Engineer = require("./Engineer");
 const Intern = require("./intern");
 const Manager = require("./Manager");
-// const render = require("./htmlRenderer");
+ const render = require("./htmlRenderer");
 
 
 
@@ -41,6 +41,7 @@ inquirer
         // console.log("success!!!");
         // console.log(data.role);
         if (data.role === "Manager") {
+            var managers = [];
             inquirer.prompt([
                 {
                     type: "input",
@@ -50,9 +51,11 @@ inquirer
             ]).then(function(role){
                 console.log(role.officeNumber);
                 const manager = new Manager(data.name,data.id,data.email,role.officeNumber)
-                
+
+                // managers.push(manager);
                 console.log(manager);
-                // render(manager);
+                render.renderManager(manager);
+                
             })
             
         }
@@ -88,10 +91,9 @@ inquirer
 
             })
         }
-         
-
+        
     })
-
+    
     
 
     
