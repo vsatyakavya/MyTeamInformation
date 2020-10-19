@@ -1,5 +1,8 @@
 const path = require("path");
 const fs = require("fs");
+const Manager = require("./Manager");
+const Engineer = require("./Engineer");
+const Intern = require("./Intern");
 
 const templatesDir = path.resolve(__dirname, "../templates");
 
@@ -30,7 +33,7 @@ const renderManager = manager => {
   template = replacePlaceholders(template, "email", manager.getEmail());
   template = replacePlaceholders(template, "id", manager.getId());
   template = replacePlaceholders(template, "officeNumber", manager.getOfficeNumber());
-  console.log("successs");
+  console.log("successsfully Manager");
   return template;
 };
 
@@ -41,6 +44,7 @@ const renderEngineer = engineer => {
   template = replacePlaceholders(template, "email", engineer.getEmail());
   template = replacePlaceholders(template, "id", engineer.getId());
   template = replacePlaceholders(template, "github", engineer.getGithub());
+  console.log("successsfully Engineer");
   return template;
 };
 
@@ -51,6 +55,7 @@ const renderIntern = intern => {
   template = replacePlaceholders(template, "email", intern.getEmail());
   template = replacePlaceholders(template, "id", intern.getId());
   template = replacePlaceholders(template, "school", intern.getSchool());
+  console.log("successsfully Intern");
   return template;
 };
 
@@ -65,7 +70,6 @@ const replacePlaceholders = (template, placeholder, value) => {
 };
 
 module.exports = {
-  render,
-  renderManager
+  render
   
 }
