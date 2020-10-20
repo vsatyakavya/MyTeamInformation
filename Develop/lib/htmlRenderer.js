@@ -33,7 +33,8 @@ const renderManager = manager => {
   template = replacePlaceholders(template, "email", manager.getEmail());
   template = replacePlaceholders(template, "id", manager.getId());
   template = replacePlaceholders(template, "officeNumber", manager.getOfficeNumber());
-  console.log("successsfully Manager");
+
+  
   return template;
 };
 
@@ -44,18 +45,22 @@ const renderEngineer = engineer => {
   template = replacePlaceholders(template, "email", engineer.getEmail());
   template = replacePlaceholders(template, "id", engineer.getId());
   template = replacePlaceholders(template, "github", engineer.getGithub());
-  console.log("successsfully Engineer");
+  
+
+
   return template;
 };
 
 const renderIntern = intern => {
   let template = fs.readFileSync(path.resolve(templatesDir, "intern.html"), "utf8");
-  template = replacePlaceholders(template, "name", "hari");
-  template = replacePlaceholders(template, "role", "jk");
+  template = replacePlaceholders(template, "name", intern.getName());
+  template = replacePlaceholders(template, "role", intern.getRole());
   template = replacePlaceholders(template, "email", intern.getEmail());
   template = replacePlaceholders(template, "id", intern.getId());
   template = replacePlaceholders(template, "school", intern.getSchool());
-  console.log("successsfully Intern");
+  
+  
+
   return template;
 };
 
@@ -66,10 +71,13 @@ const renderMain = html => {
 
 const replacePlaceholders = (template, placeholder, value) => {
   const pattern = new RegExp("{{ " + placeholder + " }}", "gm");
+   console.log(template.replace(pattern, value));
   return template.replace(pattern, value);
 };
 
-module.exports = {
-  render
+
+
+module.exports =  render
+
   
-}
+

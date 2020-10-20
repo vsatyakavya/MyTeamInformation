@@ -53,7 +53,7 @@ function init() {
                     }
                 ]).then(function (role) {
 
-                    const manager = new Manager(data.name, data.id, data.email, role.officeNumber, "Manager");
+                    const manager = new Manager(data.name, data.id, data.email, role.officeNumber,);
                     employees.push(manager);
                   
                     repeat();
@@ -71,6 +71,7 @@ function init() {
                     }
                 ]).then(function (role) {
                     const engineer = new Engineer(data.name, data.id, data.email, role.github)
+                    
                     employees.push(engineer)
                     
                     repeat();
@@ -117,7 +118,13 @@ function repeat() {
             init();
         }
         else {
-            render.render(employees);
+            const html = render(employees);
+            fs.writeFile("output/team.html", html, function(err,data){
+                if(err){
+                    console.log(err);
+                }
+                console.log("succesfully created")
+            })
            
         }
     })
