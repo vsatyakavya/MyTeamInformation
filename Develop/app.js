@@ -9,11 +9,6 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
-
-
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
 let employees = [];
 const role = ["Manager", "Engineer", "Intern"];
 function init() {
@@ -55,10 +50,7 @@ function init() {
 
                     const manager = new Manager(data.name, data.id, data.email, role.officeNumber,);
                     employees.push(manager);
-                  
                     repeat();
-
-
                 })
 
             }
@@ -71,15 +63,11 @@ function init() {
                     }
                 ]).then(function (role) {
                     const engineer = new Engineer(data.name, data.id, data.email, role.github)
-                    
+
                     employees.push(engineer)
-                    
+
                     repeat();
-
-
-
                 })
-
             }
             else if (data.role === "Intern") {
                 inquirer.prompt([
@@ -90,16 +78,16 @@ function init() {
                     }
                 ]).then(function (role) {
                     const intern = new Intern(data.name, data.id, data.email, role.school)
-                 
+
                     employees.push(intern);
-                
+
                     repeat();
 
 
 
                 })
             }
-})
+        })
 }
 
 
@@ -119,13 +107,13 @@ function repeat() {
         }
         else {
             const html = render(employees);
-            fs.writeFile("output/team.html", html, function(err,data){
-                if(err){
+            fs.writeFile("output/team.html", html, function (err, data) {
+                if (err) {
                     console.log(err);
                 }
                 console.log("succesfully created")
             })
-           
+
         }
     })
 
